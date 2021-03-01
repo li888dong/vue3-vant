@@ -1,6 +1,6 @@
 <template>
-    <van-tabs type="card">
-        <van-tab title="日">
+    <van-tabs type="card" @change="tabChange">
+        <van-tab title="日" name="日">
             <div class="date-container">
                 <van-icon name="arrow-left" @click="dateChange('decrease',1,'day')"/>
                 <div>{{startDate.format('YYYY年MM月DD日 dddd')}}</div>
@@ -8,14 +8,14 @@
             </div>
 
         </van-tab>
-        <van-tab title="周">
+        <van-tab title="周" name="周">
             <div class="date-container">
                 <van-icon name="arrow-left" @click="dateChange('decrease',1,'week')"/>
                 <div>{{startDate.format('YYYY/MM/DD')}} - {{startDate.add(1,'week').format('YYYY/MM/DD')}}</div>
                 <van-icon name="arrow" @click="dateChange('increase',1,'week')"/>
             </div>
         </van-tab>
-        <van-tab title="月">
+        <van-tab title="月" name="月">
             <div class="date-container">
                 <van-icon name="arrow-left" @click="dateChange('decrease',1,'month')"/>
                 <div>{{startDate.format('YYYY/MM/DD')}} - {{startDate.add(1,'month').format('YYYY/MM/DD')}}</div>
@@ -41,12 +41,16 @@
                     startDate.value = startDate.value.add(-step, type)
                 }
             }
+            const tabChange = (tab)=>{
+                context.emit('tab-change',tab)
+            }
             watch(date,()=>{
                 startDate.value = date.value
             })
             return{
                 startDate,
-                dateChange
+                dateChange,
+                tabChange
             }
         },
         props:{

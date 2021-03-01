@@ -1,17 +1,17 @@
 <template>
-<!--    顶部标题-->
+    <!--    顶部标题-->
     <v-header
-            :vtitle="'心率'"
-            :vcolor="'crimson'"
+            :vtitle="'步数'"
+            :vcolor="'blue'"
             @confirm-date="confirmDate"></v-header>
 
-<!--日 周 月 选择器-->
+    <!--日 周 月 选择器-->
     <v-date-tab :date="startDate" @tab-change="tabChange"/>
 
-<!--echart图表容器-->
+    <!--echart图表容器-->
     <div class="chart-container" ref="echart"></div>
 
-<!--数据项面板-->
+    <!--数据项面板-->
     <van-row class="card-list" gutter="4">
         <van-col :span="12">
             <div class="card-item">
@@ -48,7 +48,7 @@
 
     </van-row>
 
-<!--列表数据    -->
+    <!--列表数据    -->
     <div class="title" style="background-color: #eee;text-align: left;padding: 10px">
         心率异常列表
     </div>
@@ -86,7 +86,7 @@
     import vheader from '../components/v-header.vue'
     import vdatetab from '../components/v-datetab.vue'
     import dayjs from 'dayjs'
-    import chartDayOption from "./chartDayOption";
+    import {bushuDay} from "./chartDayOption";
     import chartWeekOption from "./chartWeekOption";
     import chartMonthOption from "./chartMonthOption";
     import { nextTick } from 'vue'
@@ -106,7 +106,7 @@
         mounted() {
             // 基于准备好的dom，初始化echarts实例
             this.myChart = this.echarts.init(this.$refs.echart);
-            this.myChart.setOption(chartDayOption);
+            this.myChart.setOption(bushuDay);
         },
         methods:{
             confirmDate(date){
@@ -116,7 +116,7 @@
                 await nextTick()
                 this.myChart.clear()
                 if (e === '日'){
-                    this.myChart.setOption(chartDayOption);
+                    this.myChart.setOption(bushuDay);
                 }
                 else if (e === '周'){
                     this.myChart.setOption(chartWeekOption);

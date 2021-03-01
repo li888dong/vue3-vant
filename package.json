@@ -6,6 +6,7 @@
     "dev": "vite"
   },
   "dependencies": {
+    "echarts": "^5.0.2",
     "vant": "^3.0.6",
     "vue": "^3.0.4"
   },

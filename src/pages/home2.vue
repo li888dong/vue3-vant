@@ -1,17 +1,17 @@
 <template>
-<!--    顶部标题-->
+    <!--    顶部标题-->
     <v-header
-            :vtitle="'心率'"
-            :vcolor="'crimson'"
+            :vtitle="'血氧饱和度'"
+            :vcolor="'#5b92ff'"
             @confirm-date="confirmDate"></v-header>
 
-<!--日 周 月 选择器-->
+    <!--日 周 月 选择器-->
     <v-date-tab :date="startDate" @tab-change="tabChange"/>
 
-<!--echart图表容器-->
+    <!--echart图表容器-->
     <div class="chart-container" ref="echart"></div>
 
-<!--数据项面板-->
+    <!--数据项面板-->
     <van-row class="card-list" gutter="4">
         <van-col :span="12">
             <div class="card-item">
@@ -48,7 +48,7 @@
 
     </van-row>
 
-<!--列表数据    -->
+    <!--列表数据    -->
     <div class="title" style="background-color: #eee;text-align: left;padding: 10px">
         心率异常列表
     </div>
