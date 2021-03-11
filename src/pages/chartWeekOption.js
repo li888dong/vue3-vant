@@ -1,28 +1,28 @@
 const chartWeekOption = {
 
     tooltip: {},
+    grid:{
+        bottom:40,
+        top:40,
+    },
     xAxis: {
         type: 'category',
             splitLine: {show: false},
-        data: function () {
-            var list = [];
-            for (var i = 1; i <= 11; i++) {
-                list.push('11月' + i + '日');
-            }
-            return list;
-        }()
+        data: []
     },
     itemStyle:{
         borderRadius: [5, 5, 5, 5] //（顺时针左上，右上，右下，左下）
 
     },
     yAxis: {},
+
     series: [
         {
-            name: '辅助',
+            name: '最小心率',
             type: 'bar',
-            barWidth:10,
+            barWidth:7,
             stack: '总量',
+
             itemStyle: {
                 borderColor: 'rgba(0,0,0,0)',
                 color: 'rgba(0,0,0,0)',
@@ -33,27 +33,25 @@ const chartWeekOption = {
                     color: 'rgba(0,0,0,0)'
                 }
             },
-            data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
-        },
-        {
-            name: '收入',
-            type: 'bar',
-            stack: '总量',
             label: {
-                show: true,
+                show: false,
                 position: 'top'
             },
-            data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
+            data: []
         },
         {
-            name: '支出',
+            name: '最大心率',
             type: 'bar',
             stack: '总量',
-            label: {
-                show: true,
-                position: 'bottom'
+            itemStyle: {
+                borderColor: 'rgb(192,71,52,1)',
+                color: 'rgba(192,71,52,1)',
             },
-            data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
+            label: {
+                show: false,
+                position: 'top'
+            },
+            data: []
         }
     ]
 }

@@ -104,9 +104,33 @@
             }
         },
         mounted() {
-            // 基于准备好的dom，初始化echarts实例
             this.myChart = this.echarts.init(this.$refs.echart);
-            this.myChart.setOption(chartDayOption);
+            this.$axios.get('/chartday/data')
+            .then(res=>{
+                console.log(res)
+                chartDayOption.xAxis.data = res.xData.xData.sort()
+                chartDayOption.series[0].data = res.yData.yData
+                // 基于准备好的dom，初始化echarts实例
+
+                this.myChart.setOption(chartDayOption);
+            })
+
+            this.$axios.get('/chartweek/data')
+                .then(res=>{
+                    console.log(res)
+                    chartWeekOption.xAxis.data = res.xData.xData
+                    chartWeekOption.series[0].data = res.yData.yDataMin
+                    chartWeekOption.series[1].data = res.yData.yDataMax
+                })
+
+            this.$axios.get('/monthweek/data')
+                .then(res=>{
+                    console.log(res)
+                    chartMonthOption.xAxis.data = res.xData.xData
+                    chartMonthOption.series[0].data = res.yData.yDataMin
+                    chartMonthOption.series[1].data = res.yData.yDataMax
+                })
+
         },
         methods:{
             confirmDate(date){
@@ -119,10 +143,13 @@
                     this.myChart.setOption(chartDayOption);
                 }
                 else if (e === '周'){
+
                     this.myChart.setOption(chartWeekOption);
                 }
                 else if (e === '月'){
+
                     this.myChart.setOption(chartMonthOption);
+
                 }
             }
         }

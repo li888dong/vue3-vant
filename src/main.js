@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import service from './plugins/request'
+import './mock/mock.js'
 const app = createApp(App)
 app.config.globalProperties.$axios = service;
 // 引入路由对象实例
